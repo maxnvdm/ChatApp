@@ -14,8 +14,8 @@ public class Client
 
     Client(int port, String username)
     {
-        try {
-            clientSocket = new Socket(InetAddress.getLocalHost(), port); //portnumber should be >1023
+        try {   // Attempt to form a connection to the server through a socket
+            clientSocket = new Socket(InetAddress.getLocalHost(), port);    //portnumber should be >1023
             output = new DataOutputStream(clientSocket.getOutputStream());
             input = new DataInputStream(clientSocket.getInputStream());
 
@@ -31,7 +31,7 @@ public class Client
         System.out.println("Enter your message:");
         String message = sc.nextLine();
         output.writeUTF(message);
-        output.flush();
+        output.flush();     // Used to force the output data to be sent
         String temp;
         temp = input.readUTF();
         System.out.println(temp);
